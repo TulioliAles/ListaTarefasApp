@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ListaTarefas';
+
+  public listaTarefas: any[] = [];
+
+  constructor() {
+    this.listaTarefas.push('Comprar carvão');
+    this.listaTarefas.push('Abastecer o carro');
+    this.listaTarefas.push('Pagar o condomínio');
+  }
 }
