@@ -1,1 +1,18 @@
-
+<h1 class="title animated jackInTheBox">{{ title }}</h1>
+<ul>
+  <p *ngIf="listaTarefas.length == 0"><small>Não tem nenhuma tarefa hoje!</small></p>
+  <li *ngFor="let tarefa of listaTarefas">
+    {{ tarefa.title }}
+    <button *ngIf="!tarefa.done" (click)="marcarConcluido(tarefa)">CONCLUIR</button>
+    <button *ngIf="tarefa.done" (click)="marcarNaoConcluido(tarefa)">REFAZER</button>
+    <button (click)="remover(tarefa)">REMOVER</button>
+  </li>
+</ul>
+<form [formGroup] ="form" class="form">
+  <fieldset>
+    <label>Tarefa: </label>
+    <input type="text" placeholder="Titulo da Tarefa" maxlength="60" formControlName="title"/>
+    <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter ente 3 e 60 caracteres</small>
+    <button class="button" [disabled]="form.invalid" (click)="adicionar()">Salvar</button>
+  </fieldset>
+</form>
